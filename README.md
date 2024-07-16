@@ -1,9 +1,30 @@
-# React + Vite
+# Blog Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This Blog Application allows users to log in using Google, add their blogs, view profiles, and navigate through different pages like Home and many more. The application is built using React JS and styled with Tailwind CSS. Firebase is used for authentication, and React Router DOM is used for navigation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# Blog-app" 
+## Features
+
+- **Google Login**: Users can log in using their Google account.
+- **Add Blog**: Logged-in users can add their own blog posts.
+- **User Info**: When a user is logged in, their name is displayed on the application.
+- **Profile Page**: Users can view and update their profile.
+- **Home Page**: A main landing page for the application.
+- **Responsive Design**: The application is fully responsive and works on various devices.
+- **Navigation**: Easy navigation through different pages using React Router DOM.
+- **Icons**: Beautiful icons integrated using React Icons.
+
+## Technologies Used
+
+- **React JS**: For building the user interface.
+- **Tailwind CSS**: For styling the application.
+- **React Router DOM**: For navigation between different pages.
+- **Google Firebase**: For authentication and data storage.
+- **React Icons**: For adding icons to the application.
+
+## Installation
+
+Clone the repository:
+   ```bash
+   git clone https://github.com/anupamyadav01/Blog-app
