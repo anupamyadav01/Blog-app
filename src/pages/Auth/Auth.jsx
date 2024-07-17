@@ -2,15 +2,17 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  const { auth } = useContext(AuthContext);
-
+  const { authInstance } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLoginWithGoogle = async () => {
     try {
       const googleProvider = new GoogleAuthProvider();
-      const user = await signInWithPopup(auth, googleProvider);
-      console.log(user.user.displayName);
+      const user = await signInWithPopup(authInstance, googleProvider);
+      navigate("/");
+      // console.log(user.user.displayName);
     } catch (error) {
       throw new Error(error);
     }

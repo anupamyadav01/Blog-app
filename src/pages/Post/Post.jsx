@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { PostContext } from "../../contexts/posts";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Post = () => {
   const [title, setTitle] = useState("");
@@ -16,7 +17,10 @@ const Post = () => {
     setPosts([...posts, newPost]);
     setTitle("");
     setDescription("");
-    navigate("/");
+    toast.success("Post added successfully");
+    setTimeout(() => {
+      navigate("/");
+    }, 1500);
   };
 
   return (
@@ -59,6 +63,7 @@ const Post = () => {
       >
         Add Post
       </button>
+      <Toaster />
     </div>
   );
 };
