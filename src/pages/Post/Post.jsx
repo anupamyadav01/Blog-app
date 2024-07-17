@@ -2,18 +2,33 @@ import { useContext, useState } from "react";
 import { PostContext } from "../../contexts/posts";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const Post = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { posts, setPosts } = useContext(PostContext);
   const navigate = useNavigate();
-  const handleAddPost = () => {
+
+  const addPostsToFirestore = async (post) => {
+    try {
+      const firestoreDB = getFirestore();
+      const docsRef = await addDoc(collection(firestoreDB, "Posts"), post);
+      console.log("Document written with ID: ", docsRef.id);
+    } catch (error) {
+      console.log("Error adding document: ", error);
+    }
+  };
+
+  const handleAddPost = async () => {
     const newPost = {
       id: posts.length + 1,
       title: title,
       description: description,
     };
+
+    await addPostsToFirestore(newPost);
+
     setPosts([...posts, newPost]);
     setTitle("");
     setDescription("");
@@ -52,6 +67,7 @@ const Post = () => {
         <textarea
           id="description"
           value={description}
+          rows={8}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
           placeholder="Enter post description"

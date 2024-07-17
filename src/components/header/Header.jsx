@@ -9,7 +9,6 @@ const Header = () => {
     authState: { isAuthenticated },
     authInstance,
   } = useContext(AuthContext);
-  // const {  } = useContext(AuthContext);
 
   return (
     <header className="bg-blue-500 text-white py-4 sticky top-0">
@@ -25,9 +24,8 @@ const Header = () => {
           ) : null}
           {isAuthenticated ? (
             <button
-              onClick={async () => {
-                await signOut(authInstance);
-                // console.log(data);
+              onClick={() => {
+                signOut(authInstance);
                 toast.success("Logged Out");
               }}
             >

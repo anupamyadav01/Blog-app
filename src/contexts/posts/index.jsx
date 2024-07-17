@@ -6,6 +6,7 @@ export const PostContext = createContext([]);
 // eslint-disable-next-line react/prop-types
 const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const [postLoading, setPostLoading] = useState(true);
 
   const getDataFromFireStore = async () => {
     try {
@@ -21,6 +22,8 @@ const PostContextProvider = ({ children }) => {
       // console.log(fireStoreDB);
     } catch (error) {
       console.log(error);
+    } finally {
+      setPostLoading(false);
     }
   };
 
@@ -29,7 +32,7 @@ const PostContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <PostContext.Provider value={{ posts, setPosts }}>
+    <PostContext.Provider value={{ posts, setPosts, postLoading }}>
       {children}
     </PostContext.Provider>
   );

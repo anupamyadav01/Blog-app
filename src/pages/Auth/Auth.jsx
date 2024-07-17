@@ -5,16 +5,22 @@ import { AuthContext } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  const { authInstance } = useContext(AuthContext);
+  const {
+    authInstance,
+    authState: { isAuthenticated },
+  } = useContext(AuthContext);
   const navigate = useNavigate();
+  if (isAuthenticated) {
+    navigate("/");
+  }
   const handleLoginWithGoogle = async () => {
     try {
       const googleProvider = new GoogleAuthProvider();
-      const user = await signInWithPopup(authInstance, googleProvider);
+      await signInWithPopup(authInstance, googleProvider);
+
       navigate("/");
-      // console.log(user.user.displayName);
     } catch (error) {
-      throw new Error(error);
+      throw new Error("new error for auth.jsx", error);
     }
   };
 
